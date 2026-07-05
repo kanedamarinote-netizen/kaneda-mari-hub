@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((article) => ({
+    params: { id: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/notes/*', {
+  eager: true,
+});
+
+// 本文中の /assets/xxx 参照を astro:assets 最適化済みURLへ書き換える
+const replacements = new Map<string, string>();
+for (const name of article.data.images) {
+  const mod = imageModules[`../../assets/notes/${name}`];
+  if (!mod) continue;
+  const optimized = await getImage({ src: mod.default });
+  replacements.set(`/assets/${name}`, optimized.src);
+}
+
+const html = article.data.html.replace(
+  /(<img\b[^>]*?src=")(\/assets\/[^"]+)(")/g,
+  (match, pre, src, post) => {
+    const replaced = replacements.get(src);
+    return replaced ? `${pre}${replaced}${post} loading="lazy"` : match;
+  }
+);
+---
+
+<BaseLayout title={article.data.title}>
+  <div class="wrap wrap--mid">
+    <a class="back" href="../archive.html">← 一覧に戻る</a> ｜ <a class="back" href="../index.html">プロフィール</a>
+    <h1 class="title">{article.data.title}</h1>
+    <div class="date">
+      {article.data.date}　原文: <a href={article.data.noteUrl} target="_blank">note</a>
+    </div>
+    <div class="content" set:html={html} />
+  </div>
+</BaseLayout>
+
+<style is:global>
+  h1.title { font-size: 22px; line-height: 1.6; margin: 20px 0 8px; }
+  .date { font-size: 12px; color: var(--color-faint); margin-bottom: 28px; }
+  .date a { color: var(--color-primary); }
+  .content img { max-width: 100%; height: auto; border-radius: 6px; display: block; margin: 16px auto; }
+  .content h2 {
+    font-size: 17px; border-left: 4px solid var(--color-primary);
+    padding-left: 10px; margin-top: 36px;
+  }
+  .content p { margin: 16px 0; }
+  .content figure { margin: 20px 0; }
+  .content figcaption { font-size: 12px; color: var(--color-faint); text-align: center; margin-top: 4px; }
+  .content a { color: var(--color-primary); }
+  .content blockquote {
+    margin: 20px 0; padding: 2px 16px; border-left: 3px solid var(--color-border);
+    color: var(--color-muted);
+  }
+</style>

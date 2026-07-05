@@ -1,0 +1,41 @@
+/* 金田まりハブサイト 共通デザイントークン(旧インラインCSSを統合) */
+:root {
+  --color-primary: #2A9D95;   /* ターコイズ */
+  --color-gold: #B8894B;      /* ゴールド(アクセント予備) */
+  --color-text: #1F2A2E;
+  --color-muted: #5B6F70;
+  --color-faint: #8A9A9B;
+  --color-border: #E5EEEC;
+  --bg-gradient: linear-gradient(180deg, #F7FBFA 0%, #EAF4F2 100%);
+  --font-body: -apple-system, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-gradient);
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.9;
+}
+
+/* コンテナ幅はページごとに使い分ける */
+.wrap { margin: 0 auto; padding: 40px 20px 80px; }
+.wrap--narrow { max-width: 620px; padding: 40px 24px 80px; }
+.wrap--mid { max-width: 680px; }
+.wrap--wide { max-width: 960px; }
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: .12em;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.back {
+  font-size: 13px;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.nav { font-size: 13px; margin-bottom: 20px; }
+.nav a { color: var(--color-primary); text-decoration: none; margin-right: 16px; }
