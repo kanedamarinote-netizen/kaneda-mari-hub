@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import heroImage from '../assets/header-hero.jpg';
+---
+
+<BaseLayout title="金田まり | スタートアップ&起業支援してるワーママ">
+  <div class="hero">
+    <Image src={heroImage} alt="Mari Kaneda - Business is built on clarity." widths={[640, 1280, heroImage.width]} sizes="100vw" />
+  </div>
+  <div class="wrap wrap--narrow">
+    <div class="eyebrow eyebrow--center">KANEDA MARI</div>
+    <h1>ゆるふわ見た目、<br />ガチビジネス。</h1>
+
+    <p class="lede">元小学校教員。今はスタートアップ支援の現場に、5年以上いる。</p>
+    <p class="lede">数百社のビジネスプランを読んできた。ピッチイベントも、これまで見てきたのは600件規模。</p>
+    <p class="lede">起業家オーディションの裏側、審査という名の「人の可能性を見る仕事」を、事務局という立場からずっと見てきた。</p>
+    <p class="lede">その視点で、スタートアップの話も、働き方の話も、隣で話してるみたいに書いていきたい。</p>
+
+    <div class="signature">金田まり｜スタートアップ&起業支援してるワーママ</div>
+
+    <div class="links">
+      <a class="link-card" href="https://note.com/alive_sheep6563" target="_blank">
+        <div class="k">MAIN</div>
+        <div class="t">noteで発信を読む</div>
+      </a>
+      <a class="link-card" href="archive.html">
+        <div class="k">ARCHIVE</div>
+        <div class="t">記事アーカイブ</div>
+      </a>
+      <a class="link-card" href="gallery.html">
+        <div class="k">GALLERY</div>
+        <div class="t">イラストギャラリー</div>
+      </a>
+    </div>
+
+    <div class="footer-note">note公開記事のバックアップ・再掲載を含みます</div>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero { width: 100%; display: block; }
+  .hero img { width: 100%; height: auto; display: block; }
+  .eyebrow--center { letter-spacing: .16em; text-align: center; margin-bottom: 10px; }
+  h1 {
+    font-size: 26px; text-align: center; margin: 0 0 36px;
+    line-height: 1.6; font-weight: 700;
+  }
+  .lede { font-size: 15px; margin: 0 0 20px; }
+  .signature { font-size: 13px; color: var(--color-muted); margin-top: 32px; margin-bottom: 44px; }
+  .links { display: flex; flex-direction: column; gap: 12px; }
+  .link-card {
+    display: block; background: #fff; border: 1px solid var(--color-border);
+    border-radius: 12px; padding: 18px 20px; text-decoration: none;
+    color: var(--color-text); transition: border-color .15s;
+  }
+  .link-card:hover { border-color: var(--color-primary); }
+  .link-card .k { font-size: 11px; color: var(--color-primary); font-weight: 600; letter-spacing: .05em; }
+  .link-card .t { font-size: 15px; font-weight: 700; margin-top: 4px; }
+  .footer-note { font-size: 11.5px; color: var(--color-faint); text-align: center; margin-top: 48px; }
+</style>

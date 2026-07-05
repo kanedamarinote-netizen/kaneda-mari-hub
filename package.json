@@ -1,0 +1,20 @@
+{
+  "name": "kaneda-mari-hub",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "ingest": "node scripts/ingest-note-export.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.0.0",
+    "sharp": "^0.33.0"
+  },
+  "devDependencies": {
+    "adm-zip": "^0.5.16",
+    "fast-xml-parser": "^4.5.0"
+  }
+}
