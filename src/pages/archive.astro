@@ -12,27 +12,22 @@ const articles = (await getCollection('articles')).sort((a, b) =>
     <div class="nav"><a href="index.html">← プロフィール</a><a href="gallery.html">ギャラリー →</a></div>
     <div class="eyebrow">KANEDA MARI — ARCHIVE</div>
     <h1>無料記事アーカイブ({articles.length}件)</h1>
-    <ul>
+    <div class="list">
       {articles.map((article) => (
-        <li>
-          <a href={`articles/${article.id}.html`}>{article.data.title}</a>
-          <span class="d">{article.data.date}</span>
-        </li>
+        <a class="link-card" href={`articles/${article.id}.html`}>
+          <div class="t">{article.data.title}</div>
+          <div class="d">{article.data.date}</div>
+        </a>
       ))}
-    </ul>
+    </div>
     <div class="note">原文はnoteで公開されています。</div>
   </div>
 </BaseLayout>
 
 <style>
   h1 { font-size: 22px; margin: 6px 0 24px; }
-  ul { list-style: none; padding: 0; margin: 0; }
-  li {
-    display: flex; justify-content: space-between; gap: 12px;
-    padding: 14px 0; border-bottom: 1px solid var(--color-border);
-  }
-  li a { color: var(--color-text); text-decoration: none; font-size: 14px; line-height: 1.6; }
-  li a:hover { color: var(--color-primary); }
-  .d { font-size: 11px; color: var(--color-faint); white-space: nowrap; padding-top: 2px; }
-  .note { font-size: 12px; color: var(--color-faint); margin-top: 24px; }
+  .list { display: flex; flex-direction: column; gap: 12px; }
+  .link-card .t { font-size: 15px; line-height: 1.6; margin-bottom: 6px; }
+  .link-card .d { font-size: 11px; color: var(--faint); font-family: var(--font-ui); }
+  .note { margin-top: 28px; }
 </style>

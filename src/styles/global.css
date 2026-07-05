@@ -1,41 +1,155 @@
-/* 金田まりハブサイト 共通デザイントークン(旧インラインCSSを統合) */
+/* 金田まりハブサイト デザインシステム v1(「編集者の机」)
+   参照: ブランドデザイントークン v1 / design-system-implementation-spec.md */
+
 :root {
-  --color-primary: #2A9D95;   /* ターコイズ */
-  --color-gold: #B8894B;      /* ゴールド(アクセント予備) */
-  --color-text: #1F2A2E;
-  --color-muted: #5B6F70;
-  --color-faint: #8A9A9B;
-  --color-border: #E5EEEC;
-  --bg-gradient: linear-gradient(180deg, #F7FBFA 0%, #EAF4F2 100%);
-  --font-body: -apple-system, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  --ink: #16211F;
+  --teal: #1F7A73;
+  --teal-deep: #124A45;
+  --paper: #F7FBFA;
+  --ice: #DCEEEC;
+  --brass: #B8894B;
+  --annotation: #B33F3F;
+
+  --border: #E2ECE9;
+  --muted: #5B6F70;
+  --faint: #8A9A9B;
+
+  --font-heading: 'Shippori Mincho', serif;
+  --font-body: 'Zen Kaku Gothic New', -apple-system, 'Hiragino Sans', sans-serif;
+  --font-ui: 'Outfit', sans-serif;
 }
+
+* { box-sizing: border-box; }
 
 body {
   font-family: var(--font-body);
-  background: var(--bg-gradient);
-  color: var(--color-text);
+  background: var(--paper);
+  color: var(--ink);
   margin: 0;
-  line-height: 1.9;
+  line-height: 1.95;
 }
 
-/* コンテナ幅はページごとに使い分ける */
-.wrap { margin: 0 auto; padding: 40px 20px 80px; }
-.wrap--narrow { max-width: 620px; padding: 40px 24px 80px; }
-.wrap--mid { max-width: 680px; }
-.wrap--wide { max-width: 960px; }
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  margin: 0;
+}
+
+h1 {
+  font-size: 34px;
+  line-height: 1.55;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 26px; }
+}
+
+p { font-size: 16px; }
 
 .eyebrow {
+  font-family: var(--font-ui);
   font-size: 12px;
-  letter-spacing: .12em;
-  color: var(--color-primary);
-  font-weight: 600;
+  letter-spacing: .18em;
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.caption, .note {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--faint);
 }
 
 .back {
   font-size: 13px;
-  color: var(--color-primary);
+  color: var(--teal);
   text-decoration: none;
 }
+.back:hover { color: var(--brass); }
 
 .nav { font-size: 13px; margin-bottom: 20px; }
-.nav a { color: var(--color-primary); text-decoration: none; margin-right: 16px; }
+.nav a { color: var(--teal); text-decoration: none; margin-right: 16px; }
+.nav a:hover { color: var(--brass); }
+
+/* コンテナ幅(単カラムページ用) */
+.wrap { margin: 0 auto; padding: 64px 20px 100px; }
+.wrap--narrow { max-width: 640px; padding: 64px 24px 100px; }
+.wrap--mid { max-width: 680px; }
+.wrap--wide { max-width: 960px; }
+
+@media (max-width: 480px) {
+  .wrap, .wrap--narrow { padding-top: 48px; padding-bottom: 80px; }
+}
+
+/* 本文+査読レールの2カラムレイアウト(プロフィール・記事個別ページ用) */
+.editorial-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 640px) minmax(160px, 220px);
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 64px 24px 100px;
+}
+
+@media (max-width: 860px) {
+  .editorial-grid { grid-template-columns: 1fr; padding: 48px 20px 80px; }
+  .rail { display: none; }
+}
+
+.lede-block { margin-bottom: 28px; }
+
+/* リンクカード */
+.link-card {
+  display: block;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color .18s, transform .18s;
+}
+.link-card:hover { border-color: var(--teal); transform: translateX(2px); }
+
+/* 査読マーク(シグネチャー要素) */
+.rail { position: relative; padding-top: 8px; }
+.mark {
+  font-family: var(--font-heading);
+  color: var(--annotation);
+  font-size: 13px;
+  line-height: 1.7;
+  position: relative;
+  padding-left: 18px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .4s ease-out, transform .4s ease-out;
+}
+.mark::before {
+  content: "";
+  position: absolute; left: 0; top: 4px;
+  width: 10px; height: 10px;
+  border: 1.5px solid var(--annotation);
+  border-radius: 50%;
+}
+.mark.is-visible { opacity: .88; transform: translateY(0); }
+.mark .rot1 { display: inline-block; transform: rotate(-1.5deg); }
+.mark .rot2 { display: inline-block; transform: rotate(1deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mark { transition: none; opacity: .88; transform: none; }
+}
