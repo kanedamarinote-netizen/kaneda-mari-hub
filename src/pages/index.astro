@@ -1,80 +1,209 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import heroImage from '../assets/header-hero.jpg';
+import heroImage from '../assets/header-hero-v2.jpg';
+
+// 幕3ショーケース: 同一キャラクターとして設計されたAIイラスト7枚
+const showcaseModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/showcase/*.jpg',
+  { eager: true }
+);
+const showcaseImages = Object.keys(showcaseModules)
+  .sort()
+  .map((key) => showcaseModules[key].default);
 ---
 
 <BaseLayout title="金田まり | スタートアップ&起業支援してるワーママ">
-  <div class="hero">
-    <Image src={heroImage} alt="Mari Kaneda - Business is built on clarity." widths={[640, 1280, heroImage.width]} sizes="100vw" />
-  </div>
-
-  <div class="editorial-grid">
-    <div class="main">
+  <div class="hero-v2">
+    <Image src={heroImage} alt="" widths={[640, 1280, heroImage.width]} sizes="100vw" />
+    <div class="hero-copy">
       <div class="eyebrow">KANEDA MARI</div>
       <h1>ゆるふわ見た目、<br /><span class="accent">ガチビジネス。</span></h1>
-
-      <div class="lede-block">
-        <p class="lede">元小学校教員。今はスタートアップ支援の現場に、5年以上いる。</p>
-      </div>
-      <div class="lede-block">
-        <p class="lede">数百社のビジネスプランを読んできた。ピッチイベントも、これまで見てきたのは600件規模。</p>
-      </div>
-      <div class="lede-block">
-        <p class="lede">起業家オーディションの裏側、審査という名の「人の可能性を見る仕事」を、事務局という立場からずっと見てきた。</p>
-      </div>
-      <div class="lede-block">
-        <p class="lede">その視点で、スタートアップの話も、働き方の話も、隣で話してるみたいに書いていきたい。</p>
-      </div>
-
-      <div class="signature">MARI KANEDA — STARTUP SUPPORT / WORKING MOM</div>
-
-      <div class="links">
-        <a class="link-card" href="https://note.com/alive_sheep6563" target="_blank">
-          <div><div class="k">MAIN</div><div class="t">noteで発信を読む</div></div>
-          <div class="arrow">→</div>
-        </a>
-        <a class="link-card" href="archive.html">
-          <div><div class="k">ARCHIVE</div><div class="t">記事アーカイブ</div></div>
-          <div class="arrow">→</div>
-        </a>
-        <a class="link-card" href="gallery.html">
-          <div><div class="k">GALLERY</div><div class="t">イラストギャラリー</div></div>
-          <div class="arrow">→</div>
-        </a>
-      </div>
-
-      <div class="footer-note">note公開記事のバックアップ・再掲載を含みます</div>
     </div>
+  </div>
 
-    <div class="rail">
-      <div class="mark" style="margin-top: 30px;"><span class="rot1">5年以上、</span>ここは強調していい</div>
-      <div class="mark" style="margin-top: 90px;">600件規模<span class="rot2">→数字を軽く出す</span></div>
-      <div class="mark" style="margin-top: 90px;">審査ではなく<span class="rot1">事務局</span>、ここ大事</div>
-      <div class="mark" style="margin-top: 90px;">隣で話す<span class="rot2">←声のトーンの核</span></div>
+  <!-- 幕1: 経験 -->
+  <section class="act" id="act-keiken">
+    <div class="editorial-grid editorial-grid--act">
+      <div class="main">
+        <div class="eyebrow">ACT 1 — EXPERIENCE</div>
+        <h2>経験</h2>
+        <div class="lede-block">
+          <p class="lede">元小学校教員。今はスタートアップ支援の現場に、5年以上いる。</p>
+        </div>
+        <div class="lede-block">
+          <p class="lede">数百社のビジネスプランを読んできた。ピッチイベントも、これまで見てきたのは600件規模。</p>
+        </div>
+        <div class="stats" id="stats">
+          <div class="stat">
+            <div class="stat-num"><span data-target="400">0</span>社</div>
+            <div class="stat-label">支援した会社</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num"><span data-target="600">0</span>件</div>
+            <div class="stat-label">見てきたピッチ</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num"><span data-target="5">0</span>年+</div>
+            <div class="stat-label">現場の実務</div>
+          </div>
+        </div>
+      </div>
+      <div class="rail">
+        <div class="mark mark--after-stats" style="margin-top: 40px;"><span class="rot1">5年以上、</span>ここは強調していい</div>
+        <div class="mark mark--after-stats" style="margin-top: 90px;">600件規模<span class="rot2">→数字を軽く出す</span></div>
+      </div>
     </div>
+  </section>
+
+  <!-- 幕2: 視点 -->
+  <section class="act act--ice" id="act-shiten">
+    <div class="editorial-grid editorial-grid--act">
+      <div class="main">
+        <div class="eyebrow">ACT 2 — PERSPECTIVE</div>
+        <h2>視点</h2>
+        <div class="lede-block">
+          <p class="lede">起業家オーディションの裏側、審査という名の「人の可能性を見る仕事」を、事務局という立場からずっと見てきた。</p>
+        </div>
+        <div class="lede-block">
+          <p class="lede">その視点で、スタートアップの話も、働き方の話も、隣で話してるみたいに書いていきたい。</p>
+        </div>
+      </div>
+      <div class="rail">
+        <div class="mark mark--self" style="margin-top: 60px;">審査ではなく<span class="rot1">事務局</span>、ここ大事</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 幕3: アイデア -->
+  <section class="act" id="act-idea">
+    <div class="editorial-grid editorial-grid--act">
+      <div class="main">
+        <div class="eyebrow">ACT 3 — IDEAS</div>
+        <h2>アイデア</h2>
+        <div class="lede-block">
+          <p class="lede">経験と視点のとなりに、アイデアの置き場所も。AI画像生成で、ひとりのキャラクターを描き続けている。ビジネスの解像度を上げるのも、絵の解像度を上げるのも、案外同じ作業だったりする。</p>
+        </div>
+      </div>
+      <div class="rail"></div>
+    </div>
+    <div class="showcase-wrap">
+      <div class="showcase">
+        {showcaseImages.map((img) => (
+          <div class="showcase-item">
+            <Image src={img} height={560} alt="金田まりのAIイラスト作品" />
+          </div>
+        ))}
+      </div>
+      <a class="showcase-link" href="gallery.html">イラストギャラリーを見る(全399枚) →</a>
+    </div>
+  </section>
+
+  <!-- 締め -->
+  <div class="finale">
+    <div class="signature">MARI KANEDA — STARTUP SUPPORT / WORKING MOM</div>
+    <div class="links">
+      <a class="link-card" href="https://note.com/alive_sheep6563" target="_blank">
+        <div><div class="k">MAIN</div><div class="t">noteで発信を読む</div></div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="link-card" href="archive.html">
+        <div><div class="k">ARCHIVE</div><div class="t">記事アーカイブ</div></div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="link-card" href="gallery.html">
+        <div><div class="k">GALLERY</div><div class="t">イラストギャラリー</div></div>
+        <div class="arrow">→</div>
+      </a>
+    </div>
+    <div class="footer-note">note公開記事のバックアップ・再掲載を含みます</div>
   </div>
 </BaseLayout>
 
 <style>
-  .hero { width: 100%; position: relative; }
-  .hero :global(img) { width: 100%; height: auto; display: block; }
-  .hero::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(22, 33, 31, .35) 100%);
+  /* ヒーロー: 画像の余白(左上)に見出しを重ねる */
+  .hero-v2 { width: 100%; position: relative; }
+  .hero-v2 :global(img) { width: 100%; height: auto; display: block; }
+  .hero-copy {
+    position: absolute; top: 12%; left: 6%;
+    max-width: 55%;
+  }
+  .hero-copy .eyebrow { color: var(--ice); margin-bottom: 14px; }
+  .hero-copy h1 { color: var(--paper); margin: 0; }
+  .hero-copy h1 .accent { color: var(--ice); }
+
+  @media (max-width: 480px) {
+    .hero-copy {
+      position: static; max-width: none;
+      padding: 32px 20px 0;
+    }
+    .hero-copy .eyebrow { color: var(--teal); }
+    .hero-copy h1 { color: var(--ink); }
+    .hero-copy h1 .accent { color: var(--teal); }
   }
 
-  h1 .accent { color: var(--teal); }
-  h1 { margin-bottom: 40px; }
+  /* 各幕のグリッド(通常の.editorial-gridより上下を締める) */
+  .editorial-grid--act { padding: 56px 24px; }
+  @media (max-width: 860px) {
+    .editorial-grid--act { padding: 44px 20px; }
+  }
+
+  h2 { margin: 6px 0 28px; }
 
   .lede { margin: 0; }
 
-  .signature {
-    font-family: var(--font-ui); font-size: 13px; color: var(--muted);
-    margin-top: 36px; margin-bottom: 48px; letter-spacing: .03em;
+  /* 幕1: 数字 */
+  .stats {
+    display: flex; gap: 40px; margin-top: 40px;
+    font-family: var(--font-ui);
+  }
+  .stat-num {
+    font-size: 30px; font-weight: 600; color: var(--brass);
+    line-height: 1.3; font-variant-numeric: tabular-nums;
+  }
+  .stat-label { font-size: 11px; color: var(--muted); letter-spacing: .05em; }
+  @media (max-width: 480px) {
+    .stats { gap: 24px; }
+    .stat-num { font-size: 24px; }
   }
 
+  /* 幕3: ショーケース(横スクロールstrip) */
+  .showcase-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 56px; }
+  .showcase {
+    display: flex; gap: 10px;
+    overflow-x: auto; scroll-snap-type: x proximity;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .showcase-item {
+    flex: 0 0 auto; scroll-snap-align: start;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity .4s ease-out, transform .4s ease-out;
+  }
+  .showcase-item.is-visible { opacity: 1; transform: none; }
+  .showcase-item :global(img) {
+    height: 280px; width: auto; display: block;
+    border-radius: 6px; background: var(--ice);
+  }
+  @media (max-width: 860px) {
+    .showcase-item :global(img) { height: 200px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .showcase-item { transition: none; opacity: 1; transform: none; }
+  }
+  .showcase-link {
+    display: inline-block; margin-top: 16px;
+    font-size: 14px; color: var(--ink); text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .showcase-link:hover { color: var(--teal); }
+
+  /* 締め */
+  .finale { max-width: 640px; margin: 0 auto; padding: 24px 24px 100px; }
+  .signature {
+    font-family: var(--font-ui); font-size: 13px; color: var(--muted);
+    margin-bottom: 40px; letter-spacing: .03em;
+  }
   .links { display: flex; flex-direction: column; gap: 14px; }
   .link-card { display: flex; align-items: center; justify-content: space-between; }
   .link-card .k {
@@ -83,7 +212,6 @@ import heroImage from '../assets/header-hero.jpg';
   }
   .link-card .t { font-size: 16px; font-weight: 700; }
   .link-card .arrow { color: var(--brass); font-size: 18px; }
-
   .footer-note {
     font-family: var(--font-ui); font-size: 11px; color: var(--faint);
     margin-top: 52px; letter-spacing: .02em;
@@ -91,17 +219,95 @@ import heroImage from '../assets/header-hero.jpg';
 </style>
 
 <script>
-  const marks = document.querySelectorAll<HTMLElement>('.mark');
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const acts = document.querySelectorAll<HTMLElement>('.act');
+  const statSpans = document.querySelectorAll<HTMLElement>('.stat-num span[data-target]');
+  const act1Marks = document.querySelectorAll<HTMLElement>('.mark--after-stats');
+  const act2Marks = document.querySelectorAll<HTMLElement>('.mark--self');
+  const showcaseItems = document.querySelectorAll<HTMLElement>('.showcase-item');
+
+  function showFinalState() {
+    acts.forEach((act) => act.classList.add('is-visible'));
+    statSpans.forEach((span) => (span.textContent = span.dataset.target ?? ''));
+    act1Marks.forEach((mark) => mark.classList.add('is-visible'));
+    act2Marks.forEach((mark) => mark.classList.add('is-visible'));
+    showcaseItems.forEach((item) => item.classList.add('is-visible'));
+  }
+
+  if (reduceMotion) {
+    showFinalState();
+  } else {
+    // 各幕: threshold 0.15 で一度だけフェードイン
+    const actObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const act = entry.target as HTMLElement;
+          act.classList.add('is-visible');
+          actObserver.unobserve(act);
+          // 幕3: ショーケースを80msずつスタガー表示
+          if (act.id === 'act-idea') {
+            showcaseItems.forEach((item, i) => {
+              item.style.transitionDelay = `${i * 80}ms`;
+              item.classList.add('is-visible');
+            });
+          }
+        }
+      },
+      { threshold: 0.15 }
+    );
+    acts.forEach((act) => actObserver.observe(act));
+
+    // 幕1: カウントアップ(threshold 0.5、1200ms、ease-out)
+    // 完了後 +200ms でマーク1件目、さらに +250ms で2件目
+    const DURATION = 1200;
+    function runCountUp() {
+      const start = performance.now();
+      function frame(now: number) {
+        const progress = Math.min((now - start) / DURATION, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        statSpans.forEach((span) => {
+          const target = Number(span.dataset.target);
+          span.textContent = String(Math.round(target * eased));
+        });
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+        } else {
+          act1Marks.forEach((mark, i) => {
+            setTimeout(() => mark.classList.add('is-visible'), 200 + i * 250);
+          });
         }
       }
-    },
-    { threshold: 0.3 }
-  );
-  marks.forEach((mark) => observer.observe(mark));
+      requestAnimationFrame(frame);
+    }
+
+    const statsEl = document.getElementById('stats');
+    if (statsEl) {
+      const statsObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            statsObserver.disconnect();
+            runCountUp();
+          }
+        },
+        { threshold: 0.5 }
+      );
+      statsObserver.observe(statsEl);
+    }
+
+    // 幕2のマーク: マーク自身がビューポートに入った時(threshold 0.3)
+    const markObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            markObserver.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.3 }
+    );
+    act2Marks.forEach((mark) => markObserver.observe(mark));
+  }
 </script>

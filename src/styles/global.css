@@ -153,3 +153,18 @@ p { font-size: 16px; }
 @media (prefers-reduced-motion: reduce) {
   .mark { transition: none; opacity: .88; transform: none; }
 }
+
+/* 3幕構成のセクション出現(トップページ) */
+.act {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .6s ease-out, transform .6s ease-out;
+}
+.act.is-visible { opacity: 1; transform: none; }
+
+/* Ice Wash帯: 境界線ではなく空気感を変えるための背景 */
+.act--ice { background: var(--ice); }
+
+@media (prefers-reduced-motion: reduce) {
+  .act { transition: none; opacity: 1; transform: none; }
+}
