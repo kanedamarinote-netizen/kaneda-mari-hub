@@ -8,54 +8,100 @@ import heroImage from '../assets/header-hero.jpg';
   <div class="hero">
     <Image src={heroImage} alt="Mari Kaneda - Business is built on clarity." widths={[640, 1280, heroImage.width]} sizes="100vw" />
   </div>
-  <div class="wrap wrap--narrow">
-    <div class="eyebrow eyebrow--center">KANEDA MARI</div>
-    <h1>ゆるふわ見た目、<br />ガチビジネス。</h1>
 
-    <p class="lede">元小学校教員。今はスタートアップ支援の現場に、5年以上いる。</p>
-    <p class="lede">数百社のビジネスプランを読んできた。ピッチイベントも、これまで見てきたのは600件規模。</p>
-    <p class="lede">起業家オーディションの裏側、審査という名の「人の可能性を見る仕事」を、事務局という立場からずっと見てきた。</p>
-    <p class="lede">その視点で、スタートアップの話も、働き方の話も、隣で話してるみたいに書いていきたい。</p>
+  <div class="editorial-grid">
+    <div class="main">
+      <div class="eyebrow">KANEDA MARI</div>
+      <h1>ゆるふわ見た目、<br /><span class="accent">ガチビジネス。</span></h1>
 
-    <div class="signature">金田まり｜スタートアップ&起業支援してるワーママ</div>
+      <div class="lede-block">
+        <p class="lede">元小学校教員。今はスタートアップ支援の現場に、5年以上いる。</p>
+      </div>
+      <div class="lede-block">
+        <p class="lede">数百社のビジネスプランを読んできた。ピッチイベントも、これまで見てきたのは600件規模。</p>
+      </div>
+      <div class="lede-block">
+        <p class="lede">起業家オーディションの裏側、審査という名の「人の可能性を見る仕事」を、事務局という立場からずっと見てきた。</p>
+      </div>
+      <div class="lede-block">
+        <p class="lede">その視点で、スタートアップの話も、働き方の話も、隣で話してるみたいに書いていきたい。</p>
+      </div>
 
-    <div class="links">
-      <a class="link-card" href="https://note.com/alive_sheep6563" target="_blank">
-        <div class="k">MAIN</div>
-        <div class="t">noteで発信を読む</div>
-      </a>
-      <a class="link-card" href="archive.html">
-        <div class="k">ARCHIVE</div>
-        <div class="t">記事アーカイブ</div>
-      </a>
-      <a class="link-card" href="gallery.html">
-        <div class="k">GALLERY</div>
-        <div class="t">イラストギャラリー</div>
-      </a>
+      <div class="signature">MARI KANEDA — STARTUP SUPPORT / WORKING MOM</div>
+
+      <div class="links">
+        <a class="link-card" href="https://note.com/alive_sheep6563" target="_blank">
+          <div><div class="k">MAIN</div><div class="t">noteで発信を読む</div></div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="link-card" href="archive.html">
+          <div><div class="k">ARCHIVE</div><div class="t">記事アーカイブ</div></div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="link-card" href="gallery.html">
+          <div><div class="k">GALLERY</div><div class="t">イラストギャラリー</div></div>
+          <div class="arrow">→</div>
+        </a>
+      </div>
+
+      <div class="footer-note">note公開記事のバックアップ・再掲載を含みます</div>
     </div>
 
-    <div class="footer-note">note公開記事のバックアップ・再掲載を含みます</div>
+    <div class="rail">
+      <div class="mark" style="margin-top: 30px;"><span class="rot1">5年以上、</span>ここは強調していい</div>
+      <div class="mark" style="margin-top: 90px;">600件規模<span class="rot2">→数字を軽く出す</span></div>
+      <div class="mark" style="margin-top: 90px;">審査ではなく<span class="rot1">事務局</span>、ここ大事</div>
+      <div class="mark" style="margin-top: 90px;">隣で話す<span class="rot2">←声のトーンの核</span></div>
+    </div>
   </div>
 </BaseLayout>
 
 <style>
-  .hero { width: 100%; display: block; }
-  .hero img { width: 100%; height: auto; display: block; }
-  .eyebrow--center { letter-spacing: .16em; text-align: center; margin-bottom: 10px; }
-  h1 {
-    font-size: 26px; text-align: center; margin: 0 0 36px;
-    line-height: 1.6; font-weight: 700;
+  .hero { width: 100%; position: relative; }
+  .hero :global(img) { width: 100%; height: auto; display: block; }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(22, 33, 31, .35) 100%);
   }
-  .lede { font-size: 15px; margin: 0 0 20px; }
-  .signature { font-size: 13px; color: var(--color-muted); margin-top: 32px; margin-bottom: 44px; }
-  .links { display: flex; flex-direction: column; gap: 12px; }
-  .link-card {
-    display: block; background: #fff; border: 1px solid var(--color-border);
-    border-radius: 12px; padding: 18px 20px; text-decoration: none;
-    color: var(--color-text); transition: border-color .15s;
+
+  h1 .accent { color: var(--teal); }
+  h1 { margin-bottom: 40px; }
+
+  .lede { margin: 0; }
+
+  .signature {
+    font-family: var(--font-ui); font-size: 13px; color: var(--muted);
+    margin-top: 36px; margin-bottom: 48px; letter-spacing: .03em;
   }
-  .link-card:hover { border-color: var(--color-primary); }
-  .link-card .k { font-size: 11px; color: var(--color-primary); font-weight: 600; letter-spacing: .05em; }
-  .link-card .t { font-size: 15px; font-weight: 700; margin-top: 4px; }
-  .footer-note { font-size: 11.5px; color: var(--color-faint); text-align: center; margin-top: 48px; }
+
+  .links { display: flex; flex-direction: column; gap: 14px; }
+  .link-card { display: flex; align-items: center; justify-content: space-between; }
+  .link-card .k {
+    font-family: var(--font-ui); font-size: 11px; color: var(--teal);
+    font-weight: 500; letter-spacing: .08em; display: block; margin-bottom: 5px;
+  }
+  .link-card .t { font-size: 16px; font-weight: 700; }
+  .link-card .arrow { color: var(--brass); font-size: 18px; }
+
+  .footer-note {
+    font-family: var(--font-ui); font-size: 11px; color: var(--faint);
+    margin-top: 52px; letter-spacing: .02em;
+  }
 </style>
+
+<script>
+  const marks = document.querySelectorAll<HTMLElement>('.mark');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      }
+    },
+    { threshold: 0.3 }
+  );
+  marks.forEach((mark) => observer.observe(mark));
+</script>

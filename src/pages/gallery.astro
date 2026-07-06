@@ -31,7 +31,7 @@ for (const article of galleryArticles) {
   <div class="wrap wrap--wide">
     <a class="back" href="index.html">← プロフィール</a> ｜ <a class="back" href="archive.html">記事アーカイブ →</a>
     <div class="eyebrow eyebrow--gallery">KANEDA MARI — GALLERY</div>
-    <h1>イラストギャラリー</h1>
+    <h1 class="page-title">イラストギャラリー</h1>
     <div class="sub">AI活用イラスト全{sections.length}投稿・{totalImages}枚(note公開記事より)</div>
 
     {sections.map((section) => (
@@ -54,21 +54,20 @@ for (const article of galleryArticles) {
 </BaseLayout>
 
 <style>
-  body { line-height: 1.8; }
   .eyebrow--gallery { margin-top: 20px; }
-  h1 { font-size: 22px; margin: 6px 0 6px; }
-  .sub { font-size: 13px; color: var(--color-muted); margin-bottom: 36px; }
-  .section { margin-bottom: 40px; }
-  .section-head { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-  .section-date { font-size: 11px; color: var(--color-faint); margin-bottom: 12px; }
+  .page-title { font-size: 22px; margin: 6px 0 6px; }
+  .sub { font-family: var(--font-ui); font-size: 12px; color: var(--muted); margin-bottom: 36px; }
+  .section { margin-bottom: 56px; }
+  .section-head { font-family: var(--font-heading); font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .section-date { font-family: var(--font-ui); font-size: 11px; color: var(--faint); margin-bottom: 12px; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 6px; }
   .grid img {
     width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px;
-    cursor: pointer; display: block; background: var(--color-border);
+    cursor: pointer; display: block; background: var(--ice);
   }
   .grid img:hover { opacity: .85; }
   #lightbox {
-    display: none; position: fixed; inset: 0; background: rgba(15, 20, 22, .9);
+    display: none; position: fixed; inset: 0; background: rgba(22, 33, 31, .92);
     z-index: 100; align-items: center; justify-content: center; padding: 20px;
   }
   #lightbox.open { display: flex; }
